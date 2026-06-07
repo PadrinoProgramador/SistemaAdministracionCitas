@@ -2,292 +2,127 @@
 
 ## Acerca de
 
-Este proyecto es una aplicación de escritorio desarrollada en **Java 11** que simula un sistema completo de administración de citas para un consultorio médico. Permite a administradores autenticados registrar doctores y pacientes, crear citas vinculando ambas entidades, y mantener la persistencia de datos en archivos CSV de forma portátil.
+El Sistema de Administración de Citas Clínicas es una aplicación de consola desarrollada en **Java (JDK más reciente)** que permite gestionar las operaciones diarias de un consultorio médico. El sistema proporciona un control de acceso seguro para administradores y facilita el registro de doctores, pacientes y la programación de citas médicas. Toda la información se persiste de manera segura en archivos de texto (CSV) para garantizar la portabilidad y la integridad de los datos.
 
 ## Proyecto
 
-### Descripción General
+El proyecto está estructurado aplicando estrictamente los principios de Programación Orientada a Objetos (POO):
 
-El sistema implementa una **arquitectura en 3 capas** (Modelo, Servicio, Vista) aplicando principios de programación orientada a objetos (POO) como herencia, polimorfismo, interfaces y encapsulación. La aplicación es completamente portable y puede ejecutarse en cualquier sistema operativo que tenga Java 11 instalado.
+### Diagrama de Flujo y Diseño
+El diagrama de flujo y el diagrama de clases se encuentran detallados en el documento de reporte entregado.
 
-### Características Principales
+### Descripción de Clases
 
-- **Autenticación segura:** Login de administradores con usuario y contraseña
-- **Gestión de doctores:** Registro de doctores con ID único, nombre y especialidad
-- **Gestión de pacientes:** Registro de pacientes con ID único y nombre completo
-- **Creación de citas:** Agendamiento de citas con fecha, hora, motivo y vinculación a doctor y paciente
-- **Persistencia de datos:** Almacenamiento en archivos CSV con regeneración automática
-- **Validación de datos:** Prevención de IDs duplicados y validación de campos requeridos
-- **Interfaz amigable:** Menús en consola con formato visual estructurado
+**Clase Abstracta `Usuario`**
+- **Propósito:** Servir como base para todas las entidades que representan a una persona en el sistema.
+- **Variables:** `id` (String), `nombre` (String).
+- **Métodos:** Getters/Setters, `mostrarDetalles()` (abstracto), `toCSV()` (abstracto).
 
-### Requerimientos Funcionales Implementados
+**Clase `Doctor`**
+- **Propósito:** Representar a un médico del consultorio.
+- **Variables:** `especialidad` (String).
+- **Métodos:** Getters/Setters, implementaciones concretas de `mostrarDetalles()` y `toCSV()`.
 
-| Funcionalidad | Estado |
-|---------------|--------|
-| Login de administrador | ✓ Implementado |
-| Alta de doctores | ✓ Implementado |
-| Alta de pacientes | ✓ Implementado |
-| Creación de citas | ✓ Implementado |
-| Asignación de citas a doctor y paciente | ✓ Implementado |
-| Persistencia en archivos CSV | ✓ Implementado |
-| Validación de unicidad de IDs | ✓ Implementado |
-| Regeneración automática de archivos | ✓ Implementado |
+**Clase `Paciente`**
+- **Propósito:** Representar a un paciente registrado.
+- **Métodos:** Implementaciones concretas de `mostrarDetalles()` y `toCSV()`.
+
+**Clase `Administrador`**
+- **Propósito:** Manejar el acceso al sistema.
+- **Variables:** `password` (String).
+- **Métodos:** `validarPassword(String)`, implementaciones de métodos abstractos.
+
+**Clase `Cita`**
+- **Propósito:** Vincular a un doctor y un paciente en una fecha y hora específica.
+- **Variables:** `id` (String), `fechaHora` (String), `motivo` (String), `doctor` (Doctor), `paciente` (Paciente).
+- **Métodos:** Getters/Setters, `mostrarDetalles()`, `toCSV()`.
+
+**Clase `SistemaCitas` (Servicio)**
+- **Propósito:** Controlador central que maneja la lógica de negocio.
+- **Variables:** Listas en memoria de doctores, pacientes y citas. Instancia de persistencia.
+- **Métodos:** `altaDoctor()`, `altaPaciente()`, `crearCita()`, `mostrarCitas()`, validaciones.
+
+**Clase `GestorArchivosCSV` (Persistencia)**
+- **Propósito:** Manejar la lectura y escritura en archivos CSV.
+- **Métodos:** `guardar()`, `cargar()`, validación y creación de la carpeta `db/`.
+
+**Clase `Principal`**
+- **Propósito:** Punto de entrada de la aplicación y manejo de la interfaz de usuario en consola.
+- **Métodos:** `main()`, `mostrarMenuLogin()`, `mostrarMenuPrincipal()`.
 
 ## Instalación y Configuración
 
 ### Requisitos Previos
+1. **JDK (Java Development Kit):** Versión más reciente (Java 21 LTS o superior).
+2. **IDE:** IntelliJ IDEA Community Edition.
+3. **Git:** Sistema de control de versiones.
 
-- **Java Development Kit (JDK) 11** o superior
-- **Git** para clonar el repositorio (opcional)
-- Cualquier sistema operativo (Windows, macOS, Linux)
-
-### Pasos de Instalación
-
-#### Opción 1: Desde el Repositorio (Recomendado)
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/SistemaAdministracionCitas.git
-cd SistemaAdministracionCitas
-
-# Compilar el proyecto (si necesitas modificar código)
-cd src/main/java/com/tecmilenio
-javac -d ../../../../out -encoding UTF-8 model/*.java persistence/*.java service/*.java *.java
-cd ../../../../
-
-# Ejecutar directamente desde el JAR
-java -jar SistemaAdministracionCitas.jar
-```
-
-#### Opción 2: Desde el Código Fuente
-
-```bash
-# Descargar o clonar el repositorio
-git clone https://github.com/tu-usuario/SistemaAdministracionCitas.git
-cd SistemaAdministracionCitas
-
-# Compilar todos los archivos
-javac -d out -encoding UTF-8 \
-  src/main/java/com/tecmilenio/model/*.java \
-  src/main/java/com/tecmilenio/persistence/*.java \
-  src/main/java/com/tecmilenio/service/*.java \
-  src/main/java/com/tecmilenio/*.java
-
-# Crear JAR ejecutable
-jar cfe SistemaAdministracionCitas.jar com.tecmilenio.Principal -C out .
-
-# Ejecutar
-java -jar SistemaAdministracionCitas.jar
-```
+### Configuración en IntelliJ IDEA
+1. Clona el repositorio: `git clone <url-del-repositorio>`
+2. Abre IntelliJ IDEA, selecciona `File -> Open` y elige la carpeta del proyecto.
+3. Ve a `File -> Project Structure -> Project`.
+4. En `SDK`, selecciona la versión más reciente del JDK instalada.
+5. En `Language level`, selecciona la versión correspondiente al JDK.
+6. IntelliJ detectará automáticamente la estructura del proyecto.
+7. Asegúrate de habilitar las inspecciones de código (`Settings -> Editor -> Inspections`).
+8. Configura el formateador automático (`Settings -> Editor -> Code Style -> Java`).
 
 ## Guías
 
+### Configuración del Repositorio en GitHub (Git Flow)
+
+El proyecto utiliza una estrategia de ramas estructurada:
+1. La rama `master` contiene el código estable y las versiones finales (tags como `v1.0`).
+2. La rama `develop` contiene todos los commits durante el desarrollo.
+3. Cada nueva funcionalidad se desarrolla en su propia rama (ej. `crear_cita`) y luego se hace merge hacia `develop`.
+
+### Compilación y Ejecución desde IntelliJ IDEA
+1. Abre la clase `Principal.java` ubicada en `src/main/java/com/tecmilenio/`.
+2. Haz clic en el ícono verde de "Run" (Play) junto al método `main`.
+3. El programa se ejecutará en la consola integrada de IntelliJ.
+
 ### Compilación desde Línea de Comandos
-
-Para compilar el proyecto manualmente:
-
 ```bash
-# Navegar al directorio del proyecto
+# Navegar a la carpeta raíz del proyecto
 cd SistemaAdministracionCitas
 
 # Crear directorio de salida
 mkdir -p out
 
-# Compilar con ECJ (Eclipse Compiler for Java)
-java -cp /usr/share/java/ecj.jar org.eclipse.jdt.internal.compiler.batch.Main \
-  -source 11 -target 11 -d out -encoding UTF-8 \
-  src/main/java/com/tecmilenio/model/*.java \
-  src/main/java/com/tecmilenio/persistence/*.java \
-  src/main/java/com/tecmilenio/service/*.java \
-  src/main/java/com/tecmilenio/*.java
+# Compilar todas las clases
+javac -d out src/main/java/com/tecmilenio/model/*.java \
+             src/main/java/com/tecmilenio/persistence/*.java \
+             src/main/java/com/tecmilenio/service/*.java \
+             src/main/java/com/tecmilenio/*.java
 ```
 
-### Generación de JAR Ejecutable
-
+### Generación de FAT JAR Ejecutable
+Para crear un archivo ejecutable que contenga todas las dependencias y sea totalmente portable:
 ```bash
-# Crear JAR con manifest
+# Estando en la carpeta raíz del proyecto
 jar cfe SistemaAdministracionCitas.jar com.tecmilenio.Principal -C out .
-
-# Verificar contenido del JAR
-jar tf SistemaAdministracionCitas.jar
 ```
 
-### Ejecución del Programa
+## Uso del programa
 
-**Desde JAR (Recomendado):**
-```bash
-java -jar SistemaAdministracionCitas.jar
-```
-
-**Desde clases compiladas:**
-```bash
-java -cp out com.tecmilenio.Principal
-```
-
-## Uso del Programa
-
-### Flujo de Ejecución
-
-1. **Inicio:** El programa verifica la existencia de la carpeta `db/` y crea archivos CSV si no existen.
-2. **Login:** Se solicita usuario y contraseña (usuario por defecto: `admin`, contraseña: `12345`).
-3. **Menú Principal:** Tras autenticación exitosa, se muestra un menú con opciones:
-   - **Opción 1:** Dar de alta doctor
-   - **Opción 2:** Dar de alta paciente
-   - **Opción 3:** Crear cita
-   - **Opción 4:** Ver citas agendadas
-   - **Opción 5:** Salir
-
-### Ejemplo de Uso Completo
-
-```
-╔════════════════════════════════════════╗
-║     LOGIN ADMINISTRADOR                ║
-╚════════════════════════════════════════╝
-Ingrese usuario: admin
-Ingrese contraseña: 12345
-✓ Acceso concedido.
-
-╔════════════════════════════════════════╗
-║        MENÚ PRINCIPAL                  ║
-╠════════════════════════════════════════╣
-║ 1. Dar de alta doctor                  ║
-║ 2. Dar de alta paciente                ║
-║ 3. Crear cita                          ║
-║ 4. Ver citas agendadas                 ║
-║ 5. Salir                               ║
-╚════════════════════════════════════════╝
-Seleccione opción: 1
-
-╔════════════════════════════════════════╗
-║        DAR DE ALTA DOCTOR              ║
-╚════════════════════════════════════════╝
-Ingrese ID del doctor: DOC001
-Ingrese nombre completo: Dr. Juan Pérez
-Ingrese especialidad: Cardiología
-✓ Doctor registrado exitosamente.
-```
-
-### Datos de Prueba
-
-**Credenciales de administrador por defecto:**
-- Usuario: `admin`
-- Contraseña: `12345`
-
-**Ejemplo de doctor:**
-- ID: `DOC001`
-- Nombre: `Dr. Juan Pérez`
-- Especialidad: `Cardiología`
-
-**Ejemplo de paciente:**
-- ID: `PAC001`
-- Nombre: `María García`
-
-**Ejemplo de cita:**
-- ID: `CIT001`
-- Fecha y Hora: `2026-06-15 14:30`
-- Motivo: `Revisión general`
-- Doctor: `DOC001`
-- Paciente: `PAC001`
-
-## Estructura del Proyecto
-
-```
-SistemaAdministracionCitas/
-├── src/
-│   └── main/
-│       └── java/
-│           └── com/
-│               └── tecmilenio/
-│                   ├── Principal.java              # Punto de entrada
-│                   ├── model/
-│                   │   ├── Usuario.java            # Clase abstracta base
-│                   │   ├── Doctor.java             # Hereda de Usuario
-│                   │   ├── Paciente.java           # Hereda de Usuario
-│                   │   ├── Administrador.java      # Hereda de Usuario
-│                   │   └── Cita.java               # Entidad de cita
-│                   ├── service/
-│                   │   └── SistemaCitas.java       # Lógica de negocio
-│                   └── persistence/
-│                       ├── IPersistencia.java      # Interfaz genérica
-│                       └── GestorArchivosCSV.java  # Implementación CSV
-├── out/                                             # Archivos compilados
-├── db/                                              # Base de datos (NO en Git)
-│   ├── admin.csv
-│   ├── doctores.csv
-│   ├── pacientes.csv
-│   └── citas.csv
-├── SistemaAdministracionCitas.jar                   # JAR ejecutable
-├── .gitignore                                       # Archivos a ignorar
-├── README.md                                        # Este archivo
-└── pom.xml                                          # Configuración Maven (opcional)
-```
-
-## Arquitectura Orientada a Objetos
-
-### Clases Principales
-
-**Clase Abstracta `Usuario`**
-- Define atributos comunes: `id`, `nombre`
-- Métodos abstractos: `mostrarDetalles()`, `toCSV()`
-- Aplicación de herencia y polimorfismo
-
-**Clase `Doctor` (hereda de `Usuario`)**
-- Atributo adicional: `especialidad`
-- Implementa métodos abstractos
-
-**Clase `Paciente` (hereda de `Usuario`)**
-- Implementa métodos abstractos
-
-**Clase `Administrador` (hereda de `Usuario`)**
-- Atributo adicional: `password`
-- Método: `validarPassword(String)`
-
-**Clase `Cita`**
-- Vincula `Doctor` y `Paciente`
-- Atributos: `id`, `fechaHora`, `motivo`
-- Composición de entidades
-
-**Interfaz `IPersistencia<T>`**
-- Métodos genéricos: `guardar()`, `cargar()`
-- Permite múltiples implementaciones
-
-**Clase `GestorArchivosCSV`**
-- Implementa `IPersistencia<T>`
-- Maneja lectura/escritura de CSV
-
-**Clase `SistemaCitas`**
-- Controlador central
-- Gestiona listas en memoria
-- Coordina persistencia
-
-### Principios SOLID Aplicados
-
-| Principio | Aplicación |
-|-----------|-----------|
-| **SRP** | Cada clase tiene una responsabilidad única |
-| **OCP** | Interfaz `IPersistencia` permite extensión sin modificación |
-| **LSP** | Subclases de `Usuario` son intercambiables |
-| **ISP** | Interfaz `IPersistencia` es específica |
-| **DIP** | Dependencia en interfaces, no en implementaciones |
+1. Ejecuta el archivo JAR generado:
+   ```bash
+   java -jar SistemaAdministracionCitas.jar
+   ```
+2. Al iniciar, el sistema verificará y creará la carpeta `db/` y los archivos CSV si no existen. (Nota: Esta carpeta NO se sube al repositorio).
+3. Ingresa con las credenciales de administrador:
+   - **Usuario:** `admin`
+   - **Contraseña:** `12345`
+4. En el menú principal, utiliza las opciones numéricas (1-5) para navegar:
+   - **Opción 1:** Registra un nuevo doctor (ej. ID: DOC001, Nombre: Dr. Juan Pérez, Especialidad: Cardiología).
+   - **Opción 2:** Registra un nuevo paciente (ej. ID: PAC001, Nombre: Carlos Martínez).
+   - **Opción 3:** Crea una cita vinculando el ID del doctor y el ID del paciente registrados previamente.
+   - **Opción 4:** Visualiza todas las citas agendadas con sus detalles completos.
+   - **Opción 5:** Cierra el sistema de manera segura.
 
 ## Créditos
-
-- **Desarrollado por:** IOrch
-- **Perfil:** Licenciado en Ciencias de la Computación
-- **Materia:** Computación en Java
-- **Universidad:** Tecmilenio
-- **Asesor Técnico:** Manus AI - Arquitecto de Soluciones Senior en Java
+- **Desarrollado por:** IOrch - Licenciado en Ciencias de la Computación.
+- **Materia:** Computación en Java - Universidad Tecmilenio.
 
 ## Licencia
-
-Este proyecto se distribuye bajo la **Licencia MIT**. Ver archivo `LICENSE` para más detalles.
-
-## Contacto y Soporte
-
-Para reportar problemas o sugerencias, por favor abra un issue en el repositorio de GitHub.
-
----
-
-**Última actualización:** Junio 2026  
-**Versión:** 1.0  
-**Estado:** Producción
+Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para más detalles.

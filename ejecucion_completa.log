@@ -1,0 +1,164 @@
+
+=== INICIANDO SISTEMA DE ADMINISTRACIÓN DE CITAS ===
+
+✓ Archivo 'db/doctores.csv' creado.
+✓ Archivo 'db/pacientes.csv' creado.
+✓ Archivo 'db/citas.csv' creado.
+✓ Archivo 'admin.csv' creado con usuario por defecto.
+
+✓ Sistema iniciado correctamente.
+
+╔════════════════════════════════════════╗
+║     LOGIN ADMINISTRADOR                ║
+╚════════════════════════════════════════╝
+Ingrese usuario: Ingrese contraseña: ✓ Acceso concedido.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║        DAR DE ALTA DOCTOR              ║
+╚════════════════════════════════════════╝
+Ingrese ID del doctor: Ingrese nombre completo: Ingrese especialidad: ✓ Doctor registrado exitosamente.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║        DAR DE ALTA DOCTOR              ║
+╚════════════════════════════════════════╝
+Ingrese ID del doctor: Ingrese nombre completo: Ingrese especialidad: ✓ Doctor registrado exitosamente.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║        DAR DE ALTA PACIENTE            ║
+╚════════════════════════════════════════╝
+Ingrese ID del paciente: Ingrese nombre completo: ✓ Paciente registrado exitosamente.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║        DAR DE ALTA PACIENTE            ║
+╚════════════════════════════════════════╝
+Ingrese ID del paciente: Ingrese nombre completo: ✓ Paciente registrado exitosamente.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║           CREAR CITA                   ║
+╚════════════════════════════════════════╝
+
+Doctores disponibles:
+  - DOC001: Dr. Juan Carlos Pérez García (Cardiología)
+  - DOC002: Dra. María Elena Rodríguez López (Dermatología)
+
+Pacientes registrados:
+  - PAC001: Carlos Alberto Martínez
+  - PAC002: Ana María González Ruiz
+
+Ingrese ID de la cita: Ingrese fecha y hora (formato: yyyy-MM-dd HH:mm): Ingrese motivo de la cita: Ingrese ID del doctor: Ingrese ID del paciente: ✓ Cita agendada exitosamente.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║           CREAR CITA                   ║
+╚════════════════════════════════════════╝
+
+Doctores disponibles:
+  - DOC001: Dr. Juan Carlos Pérez García (Cardiología)
+  - DOC002: Dra. María Elena Rodríguez López (Dermatología)
+
+Pacientes registrados:
+  - PAC001: Carlos Alberto Martínez
+  - PAC002: Ana María González Ruiz
+
+Ingrese ID de la cita: Ingrese fecha y hora (formato: yyyy-MM-dd HH:mm): Ingrese motivo de la cita: Ingrese ID del doctor: Ingrese ID del paciente: ✓ Cita agendada exitosamente.
+
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+╔════════════════════════════════════════╗
+║       CITAS AGENDADAS                  ║
+╚════════════════════════════════════════╝
+=== DETALLES DE LA CITA ===
+ID: CIT001
+Fecha y Hora: 2026-06-20 09:30
+Motivo: Revisión cardiovascular
+Doctor: Dr. Juan Carlos Pérez García (Cardiología)
+Paciente: Carlos Alberto Martínez
+===========================
+=== DETALLES DE LA CITA ===
+ID: CIT002
+Fecha y Hora: 2026-06-20 14:00
+Motivo: Consulta dermatológica
+Doctor: Dra. María Elena Rodríguez López (Dermatología)
+Paciente: Ana María González Ruiz
+===========================
+╔════════════════════════════════════════╗
+║        MENÚ PRINCIPAL                  ║
+╠════════════════════════════════════════╣
+║ 1. Dar de alta doctor                  ║
+║ 2. Dar de alta paciente                ║
+║ 3. Crear cita                          ║
+║ 4. Ver citas agendadas                 ║
+║ 5. Salir                               ║
+╚════════════════════════════════════════╝
+Seleccione opción: 
+✓ Cerrando sistema...
+
+✓ Gracias por usar el Sistema de Administración de Citas. ¡Hasta luego!
+
